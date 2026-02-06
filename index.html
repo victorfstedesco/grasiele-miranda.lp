@@ -18,15 +18,15 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#fff5f7',  
-                            100: '#ffe4e9', 
-                            500: '#db2777', // Rosa Magenta
-                            700: '#be185d', 
-                            900: '#831843', // Vinho Profundo
+                            50: '#fff1f5',  
+                            100: '#ffe4ee', 
+                            500: '#0b0b0b', // Preto principal
+                            700: '#111111', 
+                            900: '#000000', // Preto profundo
                         },
                         neutral: {
-                            800: '#2d3748', 
-                            600: '#718096', 
+                            800: '#111111', 
+                            600: '#4b5563', 
                         }
                     },
                     fontFamily: {
@@ -39,10 +39,10 @@
     </script>
 
     <style>
-        body { font-family: 'Mulish', sans-serif; color: #2d3748; }
+        body { font-family: 'Mulish', sans-serif; color: #111111; }
         
         .btn-primary {
-            background-color: #db2777;
+            background-color: #0b0b0b;
             color: white;
             padding: 14px 32px;
             border-radius: 8px;
@@ -51,17 +51,17 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 6px rgba(219, 39, 119, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         .btn-primary:hover {
-            background-color: #be185d;
+            background-color: #111111;
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px rgba(219, 39, 119, 0.3);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
         }
 
         .btn-white {
             background-color: white;
-            color: #831843;
+            color: #000000;
             padding: 14px 32px;
             border-radius: 8px;
             font-weight: 700;
@@ -77,7 +77,7 @@
 
         .service-card {
             background: white;
-            border: 1px solid #ffe4e9;
+            border: 1px solid #ffe4ee;
             border-radius: 12px;
             padding: 32px;
             height: 100%;
@@ -86,7 +86,7 @@
             overflow: hidden;
         }
         .service-card:hover {
-            border-color: #db2777;
+            border-color: #0b0b0b;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             transform: translateY(-5px);
         }
@@ -94,7 +94,7 @@
             content: '';
             position: absolute;
             left: 0; top: 0; bottom: 0; width: 4px;
-            background: #db2777;    
+            background: #0b0b0b;    
             transform: scaleY(0);
             transition: transform 0.3s ease;
             transform-origin: bottom;
@@ -115,8 +115,8 @@
             position: absolute;
             left: 0;
             top: 2px;
-            color: #db2777;
-            background: #fff5f7;
+            color: #0b0b0b;
+            background: #fff1f5;
             width: 24px;
             height: 24px;
             border-radius: 50%;
@@ -125,9 +125,24 @@
             justify-content: center;
             font-size: 0.75rem;
         }
+
+        .reviews-carousel {
+            cursor: grab;
+            user-select: none;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+        .reviews-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .reviews-carousel.dragging {
+            cursor: grabbing;
+            scroll-behavior: auto;
+        }
     </style>
 </head>
-<body class="bg-white antialiased">
+<body class="bg-brand-50 antialiased">
 
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
@@ -248,10 +263,13 @@
                 <h4 class="text-brand-500 font-bold text-xs tracking-widest uppercase mb-3">Conheça sua Psicóloga</h4>
                 <h2 class="font-serif text-4xl text-brand-900 font-bold mb-6">Dra. Grasiele Miranda</h2>
                 <p class="text-neutral-600 mb-6 leading-relaxed">
-                    Acredito que a cura começa na relação de confiança. Minha missão é oferecer um espaço seguro e ético onde você se sinta à vontade para ser quem é.
+                    Sou Psicologia e Neuropsicóloga, pós graduada Latus Senso em Terapia Cognitivo Comportamental.  Diversos cursos de aperfeiçoamento profissional como: Terapia do Esquema e Mindfulness (Atenção Plena).
                 </p>
                 <p class="text-neutral-600 mb-8 leading-relaxed">
-                    Como <strong>Neuropsicóloga</strong>, uno o entendimento profundo do cérebro com a escuta terapêutica sensível. Isso me permite não apenas acolher suas dores, mas traçar estratégias eficazes e personalizadas para sua melhora.
+                    Atualmente trabalho com atendimento Psicológico e avaliação Neuropsicológica com atendimento presencial e tele consulta no Brasil e exterior. Trabalhei na área da saúde, por 8 anos em posto de saúde (ubs).
+                    Sempre busco o acolhimento humanizado, ético e acolhedor, minha trajetória acadêmica e profissional é marcado pelo  meu comprometimento e cuidado individualizado.
+ 
+
                 </p>
                 <div class="grid grid-cols-1 gap-4">
                     <div class="flex items-center gap-4 p-4 bg-brand-50 rounded-lg border border-brand-100">
@@ -348,6 +366,225 @@
         </div>
     </section>
 
+    <section id="avaliacoes" class="py-24 bg-brand-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12">
+            <div class="text-center" data-aos="fade-up">
+                <span class="text-brand-500 font-bold text-xs tracking-widest uppercase mb-2 block">Depoimentos</span>
+                <h2 class="font-serif text-4xl font-bold text-brand-900 mb-4">O que dizem nossos pacientes</h2>
+                <p class="text-neutral-600 max-w-2xl mx-auto">Arraste para o lado e conheça a experiência de quem já foi acolhido aqui.</p>
+            </div>
+        </div>
+
+        <div class="reviews-carousel flex gap-6 overflow-x-auto px-6 py-4 lg:px-12 py-6" data-carousel="reviews">
+            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">A</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Ana Paula</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Terapia Online</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Me senti acolhida desde a primeira sessão. A abordagem é humana e muito clara. Já percebo evolução no meu dia a dia.</p>
+                </div>
+            </article>
+
+            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">R</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Rafael M.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Psicoterapia</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Profissional incrível, ética e atenciosa. As sessões me ajudaram a organizar pensamentos e reduzir a ansiedade de forma efetiva.</p>
+                </div>
+            </article>
+
+            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">L</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Luciana S.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Neuropsicologia</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Avaliação detalhada e cuidadosa. Recebi orientações claras e um plano de ação que fez toda a diferença na minha rotina.</p>
+                </div>
+            </article>
+
+            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">C</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Carla D.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Presencial SP</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Ambiente seguro e acolhedor. Me senti respeitada e ouvida sem julgamentos. Recomendo de olhos fechados!</p>
+                </div>
+            </article>
+
+            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">M</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Mariana T.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Terapia Online</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Mesmo online, a conexão é genuína. Sinto que posso me abrir sem medo de julgamento. Mudou completamente minha vida.</p>
+                </div>
+            </article>
+
+            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">P</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Paulo S.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Orientação</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">A orientação profissional foi essencial para minha mudança de carreira. Processo tranquilo e muito esclarecedor.</p>
+                </div>
+            </article>
+
+                        <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">P</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Paulo S.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Orientação</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">A orientação profissional foi essencial para minha mudança de carreira. Processo tranquilo e muito esclarecedor.</p>
+                </div>
+            </article>
+
+                        <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">P</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Paulo S.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Orientação</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">A orientação profissional foi essencial para minha mudança de carreira. Processo tranquilo e muito esclarecedor.</p>
+                </div>
+            </article>
+
+                        <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">P</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Paulo S.</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Orientação</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">A orientação profissional foi essencial para minha mudança de carreira. Processo tranquilo e muito esclarecedor.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <section class="py-20 bg-brand-900 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-80 h-80 bg-white opacity-5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-brand-500 opacity-20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
@@ -403,6 +640,67 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
+
+        // Carrossel com arrasto suave
+        const carousel = document.querySelector('[data-carousel="reviews"]');
+        if (carousel) {
+            let isDown = false;
+            let startX, scrollLeft, velocity = 0, lastX = 0, lastTime = Date.now();
+            let rafId = null;
+
+            carousel.addEventListener('pointerdown', (e) => {
+                isDown = true;
+                carousel.classList.add('dragging');
+                startX = e.pageX;
+                lastX = e.pageX;
+                scrollLeft = carousel.scrollLeft;
+                velocity = 0;
+                lastTime = Date.now();
+                if (rafId) cancelAnimationFrame(rafId);
+                carousel.setPointerCapture(e.pointerId);
+            });
+
+            carousel.addEventListener('pointerleave', () => {
+                isDown = false;
+                carousel.classList.remove('dragging');
+            });
+
+            carousel.addEventListener('pointerup', (e) => {
+                isDown = false;
+                carousel.classList.remove('dragging');
+                carousel.releasePointerCapture(e.pointerId);
+                
+                if (Math.abs(velocity) > 0.5) {
+                    const decelerate = () => {
+                        velocity *= 0.95;
+                        carousel.scrollLeft -= velocity;
+                        if (Math.abs(velocity) > 0.5) {
+                            rafId = requestAnimationFrame(decelerate);
+                        }
+                    };
+                    rafId = requestAnimationFrame(decelerate);
+                }
+            });
+
+            carousel.addEventListener('pointermove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                
+                const currentTime = Date.now();
+                const timeElapsed = currentTime - lastTime;
+                const distance = e.pageX - lastX;
+                
+                if (timeElapsed > 0) {
+                    velocity = distance / timeElapsed * 16;
+                }
+                
+                const walk = (e.pageX - startX) * 1.5;
+                carousel.scrollLeft = scrollLeft - walk;
+                
+                lastX = e.pageX;
+                lastTime = currentTime;
+            });
+        }
     </script>
 </body>
 </html>

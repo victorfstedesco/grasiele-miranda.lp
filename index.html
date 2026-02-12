@@ -7,7 +7,7 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Mulish:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -20,6 +20,8 @@
                         brand: {
                             50: '#fff1f5',  
                             100: '#ffe4ee', 
+                            200: '#fbcfe8', // Novo tom para hierarquia
+                            300: '#f9a8d4', // Novo tom para hierarquia
                             500: '#0b0b0b', // Preto principal
                             700: '#111111', 
                             900: '#000000', // Preto profundo
@@ -32,6 +34,7 @@
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
                         sans: ['"Mulish"', 'sans-serif'],
+                        signature: ['"Great Vibes"', 'cursive'], // Fonte da assinatura
                     },
                 }
             }
@@ -39,6 +42,7 @@
     </script>
 
     <style>
+        html, body { overflow-x: hidden; }
         body { font-family: 'Mulish', sans-serif; color: #111111; }
         
         .btn-primary {
@@ -54,30 +58,32 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         .btn-primary:hover {
-            background-color: #111111;
+            background-color: #333333;
             transform: translateY(-2px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-white {
-            background-color: white;
-            color: #000000;
-            padding: 14px 32px;
+        /* Botão secundário ajustado para preto também, conforme pedido */
+        .btn-secondary {
+            background-color: transparent;
+            color: #0b0b0b;
+            border: 2px solid #0b0b0b;
+            padding: 12px 30px;
             border-radius: 8px;
             font-weight: 700;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
         }
-        .btn-white:hover {
-            background-color: #fce7f3;
-            transform: translateY(-2px);
+        .btn-secondary:hover {
+            background-color: #0b0b0b;
+            color: white;
         }
 
         .service-card {
-            background: white;
-            border: 1px solid #ffe4ee;
+            border: 1px solid transparent;
             border-radius: 12px;
             padding: 32px;
             height: 100%;
@@ -87,20 +93,8 @@
         }
         .service-card:hover {
             border-color: #0b0b0b;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transform: translateY(-5px);
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0; width: 4px;
-            background: #0b0b0b;    
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-            transform-origin: bottom;
-        }
-        .service-card:hover::before {
-            transform: scaleY(1);
         }
         
         .check-list li {
@@ -140,14 +134,40 @@
             cursor: grabbing;
             scroll-behavior: auto;
         }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 60;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: #25d366;
+            color: #ffffff;
+            font-weight: 700;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .whatsapp-float:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+        }
+        .whatsapp-float:focus-visible {
+            outline: 3px solid #0b0b0b;
+            outline-offset: 4px;
+        }
     </style>
 </head>
 <body class="bg-brand-50 antialiased">
 
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex flex-col leading-tight">
-                <img class="h-12" src="graciele logo.png" alt="">
+            <div class="flex items-center justify-center gap-4 leading-tight">
+                <img class="h-12" src="graciele logo.png" alt="Logo">
+                <span class="font-signature text-2xl font-bold text-brand-900 block md:text-3xl">Grasiele Miranda</span>
             </div>
             
             <div class="hidden md:flex gap-8 text-sm font-semibold text-neutral-600">
@@ -156,6 +176,7 @@
                 <a href="#sobre" class="hover:text-brand-500 transition">Sobre</a>
                 <a href="#missao-visao-valores" class="hover:text-brand-500 transition">Princípios</a>
                 <a href="#servicos" class="hover:text-brand-500 transition">Serviços</a>
+                <a href="#consultorio" class="hover:text-brand-500 transition">Consultório</a>
                 <a href="#centro-interlagos" class="hover:text-brand-500 transition">Centro</a>
             </div>
 
@@ -165,18 +186,18 @@
         </div>
     </nav>
 
-    <section id="inicio" class="pt-32 pb-20 md:pt-44 md:pb-32 bg-gradient-to-b from-brand-50 to-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-12 lg:gap-24">
+    <section id="inicio" class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-brand-50 to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-10 lg:gap-20">
             
-            <div class="w-full md:w-7/12" data-aos="fade-right">
+            <div class="w-full md:w-6/12" data-aos="fade-right">
                 <div class="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-brand-100 border border-brand-200 text-brand-900 text-xs font-bold tracking-widest mb-6">
                     <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                    CRP 06/159220
-                </div>
+                    CRP 06/159220 | Psicóloga e Neuropsicóloga 
+                </div>     
                 
-                <h1 class="font-serif text-5xl lg:text-7xl text-brand-900 font-bold leading-[1.1] mb-6">
+                <h2 class="font-serif text-4xl lg:text-5xl text-brand-900 font-bold leading-tight mb-6">
                     Saúde mental com <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-brand-900">ciência e afeto.</span>
-                </h1>
+                </h2>
                 
                 <p class="text-lg text-neutral-600 mb-8 max-w-lg leading-relaxed">
                     Atendimento psicológico e avaliação neuropsicológica para ajudar você a reencontrar o equilíbrio, a clareza mental e a qualidade de vida.
@@ -186,7 +207,7 @@
                     <a href="https://wa.me/5511961776884" class="btn-primary justify-center">
                         <i class="fa-brands fa-whatsapp text-xl"></i> Agendar Sessão
                     </a>
-                    <a href="#sinais" class="px-6 py-3 rounded-lg border border-gray-300 text-neutral-600 font-bold hover:bg-gray-50 transition text-center flex items-center justify-center gap-2">
+                    <a href="#sinais" class="btn-secondary">
                         Como saber se preciso?
                     </a>
                 </div>
@@ -198,27 +219,28 @@
                 </div>
             </div>
             
-            <div class="w-full md:w-5/12 relative flex justify-center md:justify-end" data-aos="fade-left" data-aos-delay="200">
-                <div class="absolute top-10 right-10 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl -z-10"></div>
+            <div class="w-full md:w-6/12 relative flex justify-center md:justify-end" data-aos="fade-left" data-aos-delay="200">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-100/50 rounded-full blur-3xl -z-10 mix-blend-multiply"></div>
                 
-                <div class="relative w-full max-w-md">
-                    <div class="absolute top-4 left-4 w-full h-full border-2 border-brand-500/30 rounded-2xl -z-10"></div>
+                <div class="relative w-full max-w-sm"> <div class="absolute top-4 left-4 w-full h-full border-2 border-brand-500/10 rounded-2xl -z-10"></div>
                     
-                    <div class="rounded-2xl overflow-hidden shadow-2xl bg-white aspect-[3/4] max-h-[500px] w-auto mx-auto md:mx-0">
+                    <div class="rounded-2xl overflow-hidden shadow-xl bg-white aspect-[3/4] w-auto mx-auto md:mx-0">
                         <img src="grasiele1.jpg" class="w-full h-full object-cover transform hover:scale-105 transition duration-700" alt="Psicóloga Grasiele Miranda">
                     </div>
 
-                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border-l-4 border-brand-500 hidden sm:block">
-                        <p class="font-bold text-brand-900 text-lg">Dra. Grasiele Miranda</p>
-                        <p class="text-xs text-neutral-500">Psicóloga & Neuropsicóloga</p>
+                    <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-xl shadow-lg border-l-4 border-brand-500 hidden sm:block">
+                         <div class="text-brand-500 text-2xl mb-1"><i class="fa-solid fa-spa"></i></div>
+                         <p class="font-bold text-xs text-brand-900">Bem-estar &<br>Equilíbrio</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="sinais" class="py-24 bg-brand-50 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="sinais" class="py-24 bg-brand-50 relative z-10 overflow-hidden">
+        <div class="absolute -left-20 top-20 w-96 h-96 bg-brand-100 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative">
             <div class="text-center mb-16 max-w-2xl mx-auto" data-aos="fade-up">
                 <h2 class="font-serif text-3xl font-bold text-brand-900 mb-4">Sinais de que é hora de cuidar de você</h2>
                 <p class="text-neutral-600">Muitas vezes normalizamos o desconforto. Se você se identifica com estes pontos, estou aqui para ajudar.</p>
@@ -226,7 +248,7 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="p-8 rounded-2xl bg-white border border-brand-100 hover:border-brand-500 transition text-center group shadow-sm" data-aos="fade-up">
-                    <div class="w-14 h-14 mx-auto bg-brand-50 rounded-full flex items-center justify-center text-brand-500 text-2xl mb-4 group-hover:scale-110 transition">
+                    <div class="w-14 h-14 mx-auto bg-brand-200 rounded-full flex items-center justify-center text-brand-500 text-2xl mb-4 group-hover:scale-110 transition">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                     <h3 class="font-bold text-lg text-brand-900 mb-2">Ansiedade Excessiva</h3>
@@ -234,7 +256,7 @@
                 </div>
                 
                 <div class="p-8 rounded-2xl bg-white border border-brand-100 hover:border-brand-500 transition text-center group shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 mx-auto bg-brand-50 rounded-full flex items-center justify-center text-brand-500 text-2xl mb-4 group-hover:scale-110 transition">
+                    <div class="w-14 h-14 mx-auto bg-brand-200 rounded-full flex items-center justify-center text-brand-500 text-2xl mb-4 group-hover:scale-110 transition">
                         <i class="fa-solid fa-battery-empty"></i>
                     </div>
                     <h3 class="font-bold text-lg text-brand-900 mb-2">Esgotamento Mental</h3>
@@ -242,7 +264,7 @@
                 </div>
 
                 <div class="p-8 rounded-2xl bg-white border border-brand-100 hover:border-brand-500 transition text-center group shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 mx-auto bg-brand-50 rounded-full flex items-center justify-center text-brand-500 text-2xl mb-4 group-hover:scale-110 transition">
+                    <div class="w-14 h-14 mx-auto bg-brand-200 rounded-full flex items-center justify-center text-brand-500 text-2xl mb-4 group-hover:scale-110 transition">
                         <i class="fa-solid fa-puzzle-piece"></i>
                     </div>
                     <h3 class="font-bold text-lg text-brand-900 mb-2">Falhas Cognitivas</h3>
@@ -256,40 +278,39 @@
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
             <div class="w-full md:w-1/2" data-aos="fade-right">
                 <div class="relative">
-                     <div class="absolute -inset-4 border border-brand-200 rounded-xl transform rotate-2"></div>
+                     <div class="absolute -inset-4 border-2 border-brand-200 rounded-xl transform rotate-2"></div>
                      <img src="grasiele2.jpg" class="rounded-lg shadow-lg w-full relative z-10">
                 </div>
             </div>
             <div class="w-full md:w-1/2" data-aos="fade-left">
                 <h4 class="text-brand-500 font-bold text-xs tracking-widest uppercase mb-3">Conheça sua Psicóloga</h4>
-                <h2 class="font-serif text-4xl text-brand-900 font-bold mb-6">Dra. Grasiele Miranda</h2>
+                <h2 class="font-serif text-4xl text-brand-900 font-bold mb-6">Dra. Grasièle Miranda</h2>
                 <p class="text-neutral-600 mb-6 leading-relaxed">
-                    Sou Psicologia e Neuropsicóloga, pós graduada Latus Senso em Terapia Cognitivo Comportamental.  Diversos cursos de aperfeiçoamento profissional como: Terapia do Esquema e Mindfulness (Atenção Plena).
+                    Sou Psicóloga e Neuropsicóloga, pós graduada Latus Senso em Terapia Cognitivo Comportamental. Diversos cursos de aperfeiçoamento profissional como: Terapia do Esquema e Mindfulness (Atenção Plena).
                 </p>
                 <p class="text-neutral-600 mb-8 leading-relaxed">
                     Atualmente trabalho com atendimento Psicológico e avaliação Neuropsicológica com atendimento presencial e tele consulta no Brasil e exterior. Trabalhei na área da saúde, por 8 anos em posto de saúde (ubs).
-                    Sempre busco o acolhimento humanizado, ético e acolhedor, minha trajetória acadêmica e profissional é marcado pelo  meu comprometimento e cuidado individualizado.
- 
-
+                    Sempre busco o acolhimento humanizado, ético e acolhedor, minha trajetória acadêmica e profissional é marcada pelo meu comprometimento e cuidado individualizado.
                 </p>
+                
                 <div class="grid grid-cols-1 gap-4">
-                    <div class="flex items-center gap-4 p-4 bg-brand-50 rounded-lg border border-brand-100">
+                    <div class="flex items-center gap-4 p-4 bg-brand-100 rounded-lg border border-brand-200">
                         <div class="bg-white p-2 rounded text-brand-500 shadow-sm"><i class="fa-solid fa-heart"></i></div>
                         <div>
                             <h4 class="font-bold text-brand-900 text-sm">Abordagem Humanizada</h4>
-                            <p class="text-xs text-gray-500">Respeito total à sua história e ritmo.</p>
+                            <p class="text-xs text-gray-600">Respeito total à sua história e ritmo.</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4 p-4 bg-brand-50 rounded-lg border border-brand-100">
+                    <div class="flex items-center gap-4 p-4 bg-brand-100 rounded-lg border border-brand-200">
                         <div class="bg-white p-2 rounded text-brand-500 shadow-sm"><i class="fa-solid fa-graduation-cap"></i></div>
                         <div>
                             <h4 class="font-bold text-brand-900 text-sm">Especialista em Neuropsicologia</h4>
-                            <p class="text-xs text-gray-500">Ciência aplicada ao bem-estar.</p>
+                            <p class="text-xs text-gray-600">Ciência aplicada ao bem-estar.</p>
                         </div>
                     </div>
                 </div>
                 <div class="mt-8" data-aos="fade-up">
-                    <a href="#agendar" class="btn-primary justify-center w-full sm:w-auto">
+                    <a href="https://wa.me/5511961776884" class="btn-primary justify-center w-full sm:w-auto">
                         <i class="fa-brands fa-whatsapp text-xl"></i> Agendar Sessão
                     </a>
                 </div>
@@ -302,101 +323,54 @@
             <div class="text-center mb-16" data-aos="fade-up">
                 <span class="text-brand-500 font-bold text-xs tracking-widest uppercase mb-3 block">Nossos Princípios</span>
                 <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Missão, Visão e Valores</h2>
-                <p class="text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-                    Os pilares que guiam meu trabalho e compromisso com o seu bem-estar.
-                </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Missão -->
-                <div class="bg-gradient-to-br from-brand-50 to-white border-2 border-brand-100 rounded-2xl p-8 hover:border-brand-500 transition-all duration-300 hover:shadow-xl" data-aos="fade-up">
-                    <div class="w-16 h-16 bg-brand-500 rounded-xl flex items-center justify-center text-white text-3xl mb-6 shadow-lg">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-brand-50 border border-brand-100 rounded-2xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center text-brand-500 text-3xl mb-6 shadow-sm">
                         <i class="fa-solid fa-bullseye"></i>
                     </div>
                     <h3 class="font-serif text-2xl font-bold text-brand-900 mb-4">Missão</h3>
-                    <p class="text-neutral-700 leading-relaxed">
-                        Promover saúde mental e bem-estar através de atendimento psicológico humanizado, ético e baseado em evidências científicas. Acolher cada paciente com respeito, empatia e comprometimento, facilitando processos de autoconhecimento e transformação pessoal.
+                    <p class="text-neutral-700 leading-relaxed text-sm">
+                        Promover saúde mental e bem-estar através de atendimento psicológico humanizado, ético e baseado em evidências científicas.
                     </p>
                 </div>
 
-                <!-- Visão -->
-                <div class="bg-gradient-to-br from-brand-50 to-white border-2 border-brand-100 rounded-2xl p-8 hover:border-brand-500 transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 bg-brand-500 rounded-xl flex items-center justify-center text-white text-3xl mb-6 shadow-lg">
+                <div class="bg-brand-100 border border-brand-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center text-brand-500 text-3xl mb-6 shadow-sm">
                         <i class="fa-solid fa-eye"></i>
                     </div>
                     <h3 class="font-serif text-2xl font-bold text-brand-900 mb-4">Visão</h3>
-                    <p class="text-neutral-700 leading-relaxed">
-                        Ser reconhecida como referência em psicologia e neuropsicologia, contribuindo para uma sociedade mais saudável emocionalmente, onde o cuidado com a saúde mental seja acessível, respeitado e priorizado por todos.
+                    <p class="text-neutral-700 leading-relaxed text-sm">
+                        Ser reconhecida como referência em psicologia e neuropsicologia, contribuindo para uma sociedade mais saudável emocionalmente.
                     </p>
                 </div>
 
-                <!-- Valores -->
-                <div class="bg-gradient-to-br from-brand-50 to-white border-2 border-brand-100 rounded-2xl p-8 hover:border-brand-500 transition-all duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 bg-brand-500 rounded-xl flex items-center justify-center text-white text-3xl mb-6 shadow-lg">
+                <div class="bg-brand-200 border border-brand-300 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform md:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center text-brand-500 text-3xl mb-6 shadow-sm">
                         <i class="fa-solid fa-heart"></i>
                     </div>
                     <h3 class="font-serif text-2xl font-bold text-brand-900 mb-4">Valores</h3>
-                    <ul class="space-y-3 text-neutral-700">
+                    <ul class="space-y-3 text-neutral-800 text-sm font-medium">
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-brand-500 mt-1"></i>
-                            <span><strong>Ética:</strong> Sigilo e respeito absoluto</span>
+                            <i class="fa-solid fa-check text-brand-900 mt-1"></i>
+                            <span>Ética e Sigilo absoluto</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-brand-500 mt-1"></i>
-                            <span><strong>Empatia:</strong> Acolhimento genuíno</span>
+                            <i class="fa-solid fa-check text-brand-900 mt-1"></i>
+                            <span>Empatia e Acolhimento</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-brand-500 mt-1"></i>
-                            <span><strong>Ciência:</strong> Práticas baseadas em evidências</span>
+                            <i class="fa-solid fa-check text-brand-900 mt-1"></i>
+                            <span>Ciência e Evidências</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-brand-500 mt-1"></i>
-                            <span><strong>Compromisso:</strong> Dedicação à sua evolução</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-brand-500 mt-1"></i>
-                            <span><strong>Humanização:</strong> Cuidado individualizado</span>
+                            <i class="fa-solid fa-check text-brand-900 mt-1"></i>
+                            <span>Humanização</span>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="para-quem" class="py-24 bg-brand-50">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-center">
-            
-            <div class="w-full md:w-1/2" data-aos="fade-up">
-                <span class="text-brand-500 font-bold text-xs tracking-widest uppercase mb-2 block">Público e Propósito</span>
-                <h2 class="font-serif text-3xl md:text-4xl text-brand-900 font-bold mb-6">
-                    Para quem é este espaço?
-                </h2>
-                <p class="text-neutral-600 text-lg leading-relaxed mb-6">
-                    A terapia não é apenas para momentos de crise, mas um lugar de encontro consigo mesmo. Meu consultório é um ambiente seguro, livre de julgamentos, preparado para acolher sua história.
-                </p>
-                <p class="text-neutral-600 leading-relaxed">
-                    Atendo adolescentes, adultos e idosos que buscam não apenas o alívio de sintomas, mas uma compreensão mais profunda de suas emoções e funcionamento cognitivo.
-                </p>
-            </div>
-
-            <div class="w-full md:w-1/2" data-aos="fade-up" data-aos-delay="200">
-                <div class="bg-white p-8 rounded-2xl border border-brand-100 shadow-sm">
-                    <h3 class="font-serif text-xl font-bold text-brand-900 mb-6">O atendimento é indicado se você:</h3>
-                    <ul class="check-list text-neutral-600 space-y-2">
-                        <li>Busca <strong>autoconhecimento</strong> e crescimento pessoal.</li>
-                        <li>Sente que a <strong>ansiedade ou tristeza</strong> estão paralisando sua rotina.</li>
-                        <li>Está passando por <strong>transições difíceis</strong> (luto, carreira, separação).</li>
-                        <li>Precisa investigar dificuldades de <strong>memória e atenção</strong>.</li>
-                        <li>Deseja melhorar seus <strong>relacionamentos</strong> e comunicação.</li>
-                    </ul>
-                    <div class="mt-8">
-                        <a href="#agendar" class="btn-primary justify-center w-full">
-                            <i class="fa-brands fa-whatsapp text-xl"></i> Agendar Sessão
-                        </a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -408,137 +382,99 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="service-card" data-aos="fade-up">
-                    <div class="w-12 h-12 bg-brand-50 rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6">
+                <div class="service-card bg-brand-50 border-brand-100" data-aos="fade-up">
+                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-comments"></i>
                     </div>
                     <h3 class="font-serif text-xl font-bold text-brand-900 mb-3">Psicoterapia</h3>
                     <p class="text-sm text-neutral-600 leading-relaxed">Tratamento de transtornos mentais e emocionais com foco no autoconhecimento.</p>
                 </div>
 
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 bg-brand-50 rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6">
+                <div class="service-card bg-brand-100 border-brand-200" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-brain"></i>
                     </div>
                     <h3 class="font-serif text-xl font-bold text-brand-900 mb-3">Neuropsicologia</h3>
                     <p class="text-sm text-neutral-600 leading-relaxed">Avaliação detalhada das funções cognitivas (memória, atenção, linguagem).</p>
                 </div>
 
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 bg-brand-50 rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6">
+                <div class="service-card bg-brand-50 border-brand-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-laptop-medical"></i>
                     </div>
                     <h3 class="font-serif text-xl font-bold text-brand-900 mb-3">Terapia Online</h3>
                     <p class="text-sm text-neutral-600 leading-relaxed">Atendimento via videochamada com a mesma qualidade e sigilo do presencial.</p>
                 </div>
 
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 bg-brand-50 rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6">
-                        <i class="fa-solid fa-user-graduate"></i>
+                <div class="service-card bg-brand-100 border-brand-200" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-brand-500 text-xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-globe"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-brand-900 mb-3">Orientação</h3>
-                    <p class="text-sm text-neutral-600 leading-relaxed">Suporte para escolhas profissionais e desenvolvimento de carreira.</p>
+                    <h3 class="font-serif text-xl font-bold text-brand-900 mb-3">Atendimento Brasil e Exterior</h3>
+                    <p class="text-sm text-neutral-600 leading-relaxed">Suporte psicológico especializado para brasileiros que residem em qualquer lugar do mundo.</p>
                 </div>
             </div>
             
             <div class="mt-12 text-center" data-aos="fade-up">
-                <a href="#agendar" class="btn-primary justify-center">
+                <a href="https://wa.me/5511961776884" class="btn-primary justify-center">
                     <i class="fa-brands fa-whatsapp text-xl"></i> Agendar Sessão
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="centro-interlagos" class="py-24 bg-gradient-to-br from-brand-900 to-brand-700 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500 opacity-10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
-        
+    <section id="consultorio" class="py-20 bg-brand-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <span class="text-brand-500 font-bold text-xs tracking-widest uppercase mb-2 block">Nosso Espaço</span>
+                <h2 class="font-serif text-3xl font-bold text-brand-900">Conheça o Consultório</h2>
+                <p class="text-neutral-600">Um ambiente seguro, acolhedor e preparado para você.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-brand-100 h-80" data-aos="fade-right">
+                    <img src="foto1.jpeg" alt="Foto do Consultório 1" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-brand-100 h-80" data-aos="fade-left">
+                    <img src="foto2.jpeg" alt="Foto do Consultório 2" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="centro-interlagos" class="py-24 bg-white relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 relative z-10">
             <div class="text-center mb-12" data-aos="fade-up">
-                <span class="text-brand-100 font-bold text-xs tracking-widest uppercase mb-3 block">Outros Serviços</span>
-                <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">Centro de Avaliação de Interlagos</h2>
-                <p class="text-brand-100 text-lg max-w-2xl mx-auto leading-relaxed">
-                    Além dos atendimentos individuais, trabalho em parceria com o Centro de Avaliação de Interlagos, que oferece serviços multidisciplinares especializados para você e sua família.
+                <span class="text-brand-500 font-bold text-xs tracking-widest uppercase mb-3 block">Multidisciplinar</span>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-4">Centro de Avaliação de Interlagos</h2>
+                <p class="text-neutral-600 text-lg max-w-2xl mx-auto leading-relaxed">
+                    Trabalho em parceria com o Centro de Avaliação de Interlagos, oferecendo infraestrutura completa para você e sua família.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all duration-300" data-aos="fade-right">
-                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center text-white text-2xl mb-6">
-                        <i class="fa-solid fa-hospital"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl font-bold text-white mb-4">Estrutura Completa</h3>
-                    <p class="text-brand-100 leading-relaxed mb-6">
-                        O Centro conta com profissionais qualificados e infraestrutura moderna para oferecer atendimento de qualidade em diversas especialidades da saúde.
-                    </p>
-                    <ul class="space-y-3 text-brand-100">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-white mt-1"></i>
-                            <span>Equipe multidisciplinar experiente</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-white mt-1"></i>
-                            <span>Ambiente acolhedor e acessível</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check-circle text-white mt-1"></i>
-                            <span>Atendimento humanizado</span>
-                        </li>
-                    </ul>
+            <div class="max-w-4xl mx-auto bg-brand-50 rounded-2xl p-8 md:p-12 border border-brand-100 shadow-sm text-center" data-aos="fade-up">
+                <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center text-brand-500 text-4xl mb-8 mx-auto shadow-md">
+                    <i class="fa-solid fa-hospital"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-brand-900 mb-6">Estrutura Completa e Acolhedora</h3>
+                
+                <p class="text-neutral-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                    O Centro conta com profissionais qualificados e infraestrutura moderna para oferecer atendimento de qualidade. Um espaço pensado para o bem-estar integral.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-10 text-neutral-700 font-medium">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-brand-500"></i> Equipe Multidisciplinar</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-brand-500"></i> Acessibilidade</span>
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-brand-500"></i> Atendimento Humanizado</span>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 hover:bg-white/15 transition-all duration-300" data-aos="fade-left">
-                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center text-white text-2xl mb-6">
-                        <i class="fa-solid fa-user-doctor"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl font-bold text-white mb-4">Serviços Oferecidos</h3>
-                    <p class="text-brand-100 leading-relaxed mb-6">
-                        Tratamentos especializados que podem complementar seu acompanhamento psicológico e neuropsicológico.
-                    </p>
-                    <ul class="space-y-3 text-brand-100">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-dot text-white mt-1 text-xs"></i>
-                            <span>Fonoaudiologia</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-dot text-white mt-1 text-xs"></i>
-                            <span>Terapia Ocupacional</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-dot text-white mt-1 text-xs"></i>
-                            <span>Fisioterapia</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-dot text-white mt-1 text-xs"></i>
-                            <span>E outras especialidades</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl p-8 md:p-10 shadow-2xl" data-aos="fade-up">
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div class="flex-1">
-                        <h3 class="font-serif text-2xl font-bold text-brand-900 mb-4">
-                            Agende uma avaliação no Centro
-                        </h3>
-                        <p class="text-neutral-600 mb-6 leading-relaxed">
-                            Se você ou alguém da sua família precisa de acompanhamento multidisciplinar, entre em contato com o Centro de Avaliação de Interlagos. Estou à disposição para orientar e encaminhar você da melhor forma possível.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="https://wa.me/5511961776884" class="btn-primary justify-center">
-                                <i class="fa-brands fa-whatsapp text-xl"></i> Saiba Mais pelo WhatsApp
-                            </a>
-                            <div class="flex items-center gap-3 text-neutral-600 text-sm">
-                                <i class="fa-solid fa-location-dot text-brand-500"></i>
-                                <span>Interlagos, São Paulo - SP</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-auto flex-shrink-0">
-                        <div class="w-32 h-32 bg-gradient-to-br from-brand-500 to-brand-900 rounded-2xl flex items-center justify-center text-white shadow-xl">
-                            <i class="fa-solid fa-building text-5xl"></i>
-                        </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="https://wa.me/5511985593454" class="btn-primary">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Contatar Centro de Avaliação
+                    </a>
+                    <div class="flex items-center gap-2 text-neutral-500 text-sm">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Interlagos, São Paulo - SP</span>
                     </div>
                 </div>
             </div>
@@ -565,16 +501,12 @@
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Agradecida, por está sendo atendida pela <strong>psicóloga Grasiele</strong>. Deus abençoe seu trabalho cada vez mais.</p>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Agradecida, por está sendo atendida pela <strong>psicóloga Grasièle</strong>. Deus abençoe seu trabalho cada vez mais.</p>
                 </div>
             </article>
 
@@ -583,21 +515,17 @@
                     <div class="flex items-center gap-4">
                         <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">L</div>
                         <div>
-                            <p class="font-bold text-brand-900 text-lg">Lucas Expedito Hessel Rodrigues</p>
+                            <p class="font-bold text-brand-900 text-lg">Lucas Expedito</p>
                             <p class="text-xs text-neutral-500 uppercase tracking-wide">Paciente</p>
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm"><strong>O atendimento é excelente, com muita empatia e atenção.</strong> Tem me ajudado a enfrentar meus desafios pessoais e a evoluir constantemente, buscando ser uma pessoa melhor a cada dia.</p>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm"><strong>O atendimento é excelente, com muita empatia e atenção.</strong> Tem me ajudado a enfrentar meus desafios pessoais e a evoluir constantemente.</p>
                 </div>
             </article>
 
@@ -606,67 +534,36 @@
                     <div class="flex items-center gap-4">
                         <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">P</div>
                         <div>
-                            <p class="font-bold text-brand-900 text-lg">Psicóloga Laudineide Araújo</p>
+                            <p class="font-bold text-brand-900 text-lg">Laudineide Araújo</p>
                             <p class="text-xs text-neutral-500 uppercase tracking-wide">Colega de Profissão</p>
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Desde o primeiro atendimento, percebi o quanto a <strong>Dra. Grasiele</strong> é dedicada, acolhedora e extremamente profissional. Sua escuta atenta, empatia e sensibilidade fazem toda a diferença no processo terapêutico. <strong>Ela conduz as sessões com sabedoria, sem julgamentos, sempre respeitando meu tempo e minhas necessidades.</strong> Recomendo de olhos fechados! Uma profissional que realmente transforma vidas com seu trabalho.</p>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Desde o primeiro atendimento, percebi o quanto a <strong>Dra. Grasièle</strong> é dedicada. Ela conduz as sessões com sabedoria, sem julgamentos.</p>
                 </div>
             </article>
-
+            
             <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
                 <div class="flex items-start justify-between mb-6">
                     <div class="flex items-center gap-4">
                         <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">C</div>
                         <div>
-                            <p class="font-bold text-brand-900 text-lg">Christina Poliana Castro</p>
+                            <p class="font-bold text-brand-900 text-lg">Cristiane Santos</p>
                             <p class="text-xs text-neutral-500 uppercase tracking-wide">Paciente</p>
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Uma das melhores pessoas que já conheci!!! <strong>Extremamente atenciosa e humana.</strong></p>
-                </div>
-            </article>
-
-            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
-                <div class="flex items-start justify-between mb-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">V</div>
-                        <div>
-                            <p class="font-bold text-brand-900 text-lg">Vera lucia Santos Ferreira</p>
-                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Paciente</p>
-                        </div>
-                    </div>
-                    <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                    </div>
-                </div>
-                <div class="relative">
-                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm"><strong>Uma profissional excelente</strong>, seria com muita responsabilidade, indico a todos, <strong>preço acessível</strong>. Estou muito bem com a terapia.</p>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">A melhor experiência, gostamos de dizer que a <strong>grazy é meu anjo</strong>. Estamos juntos a muitos anos. Sou bipolar e estou controlada.</p>
                 </div>
             </article>
 
@@ -675,16 +572,12 @@
                     <div class="flex items-center gap-4">
                         <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">J</div>
                         <div>
-                            <p class="font-bold text-brand-900 text-lg">julia Santos</p>
+                            <p class="font-bold text-brand-900 text-lg">Julia Santos</p>
                             <p class="text-xs text-neutral-500 uppercase tracking-wide">Paciente</p>
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
@@ -703,16 +596,12 @@
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Simplesmente maravilhosa!! Me ajudou mt e está me ajudando demais... <strong>estou viva graças a esse anjo em forma de humano, sou eternamente grata por tudo</strong> ❤️</p>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Simplesmente maravilhosa! Me ajudou muito e está me ajudando demais. <strong>Sou eternamente grata por tudo.</strong></p>
                 </div>
             </article>
 
@@ -726,16 +615,12 @@
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Incrível o carinho e dedicação com que essa <strong>grande psicóloga</strong> consegue exercer o seu trabalho... <strong>Ela conseguiu uma RESIGNIFICAÇÃO a minha VIDA</strong> ... Sou MUITO grato a ela por me trazer grandes evoluções e objetivos de vida a longo prazo.</p>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Incrível o carinho e dedicação com que essa profissional exerce o seu trabalho. <strong>Ela conseguiu uma ressignificação na minha vida</strong> e grandes evoluções.</p>
                 </div>
             </article>
 
@@ -744,75 +629,104 @@
                     <div class="flex items-center gap-4">
                         <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">C</div>
                         <div>
-                            <p class="font-bold text-brand-900 text-lg">Cristiane Santos</p>
+                            <p class="font-bold text-brand-900 text-lg">Christina Poliana Castro</p>
                             <p class="text-xs text-neutral-500 uppercase tracking-wide">Paciente</p>
                         </div>
                     </div>
                     <div class="text-yellow-500 flex gap-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
                     </div>
                 </div>
                 <div class="relative">
                     <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
-                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">A melhor experiência, gostamos de dizer que a <strong>grazy é meu anjo</strong>. Estamos juntos a muitos anos, e em <strong>primeiro lugar Deus depois ela no meu tratamento. Sou bipolar e estou controlada.</strong></p>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Uma das melhores pessoas que já conheci! <strong>Extremamente atenciosa e humana.</strong></p>
+                </div>
+            </article>
+
+            <article class="flex-shrink-0 w-[340px] sm:w-[400px] bg-white border-2 border-brand-100 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:border-brand-500/40 transition-all duration-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brand-100 to-brand-50 flex items-center justify-center font-bold text-brand-900 text-lg shadow-sm">V</div>
+                        <div>
+                            <p class="font-bold text-brand-900 text-lg">Vera Lucia Santos Ferreira</p>
+                            <p class="text-xs text-neutral-500 uppercase tracking-wide">Paciente</p>
+                        </div>
+                    </div>
+                    <div class="text-yellow-500 flex gap-0.5">
+                        <i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i><i class="fa-solid fa-star text-sm"></i>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fa-solid fa-quote-left text-brand-500/15 text-3xl absolute -top-1 -left-1"></i>
+                    <p class="text-neutral-700 leading-relaxed pl-6 italic text-sm">Uma profissional excelente, com muita responsabilidade. <strong>Indico a todos</strong> e estou muito bem com a terapia.</p>
                 </div>
             </article>
         </div>
     </section>
 
-    <section id="agendar" class="py-20 bg-brand-900 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-80 h-80 bg-white opacity-5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-brand-500 opacity-20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
-
+    <section id="agendar" class="py-20 bg-brand-50 relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 class="font-serif text-3xl md:text-5xl text-white font-bold mb-6 leading-tight" data-aos="fade-up">
+            <h2 class="font-serif text-3xl md:text-5xl text-brand-900 font-bold mb-6 leading-tight" data-aos="fade-up">
                 Dê o primeiro passo para o seu bem-estar.
             </h2>
-            <p class="text-brand-100 text-lg mb-10 max-w-2xl mx-auto font-light" data-aos="fade-up" data-aos-delay="100">
+            <p class="text-neutral-600 text-lg mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                 Não espere o desconforto aumentar. Agende sua avaliação e comece a investir na sua saúde mental hoje mesmo.
             </p>
             <div data-aos="fade-up" data-aos-delay="200">
-                <a href="https://wa.me/5511961776884" class="btn-white text-lg px-8 py-4 shadow-xl hover:shadow-2xl hover:scale-105 transform transition duration-300">
+                <a href="https://wa.me/5511961776884" class="btn-primary text-lg px-8 py-4 shadow-xl hover:shadow-2xl hover:scale-105 transform transition duration-300">
                     <i class="fa-brands fa-whatsapp text-2xl"></i> Agendar pelo WhatsApp
                 </a>
-                <p class="mt-4 text-brand-100 text-xs opacity-70">Respondemos em horário comercial.</p>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-50 pt-16 pb-8 border-t border-gray-200">
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 mb-12">
             <div>
-                <span class="font-serif text-xl font-bold text-brand-900 block mb-4">Grasiele Miranda</span>
+                <span class="font-signature text-3xl font-bold text-brand-900 block mb-4">Grasiele Miranda</span>
                 <p class="text-sm text-neutral-600 mb-6">Psicologia Clínica e Neuropsicologia com ética e compromisso.</p>
                 <div class="flex gap-4">
-                    <a href="https://instagram.com/grasi_elemiranda" class="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-brand-900 hover:bg-brand-500 hover:text-white transition hover:border-brand-500"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://wa.me/5511961776884" class="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-brand-900 hover:bg-brand-500 hover:text-white transition hover:border-brand-500"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/grasi_elemiranda" class="w-10 h-10 bg-brand-50 border border-brand-200 rounded-full flex items-center justify-center text-brand-900 hover:bg-brand-500 hover:text-white transition hover:border-brand-500"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/5511961776884" class="w-10 h-10 bg-brand-50 border border-brand-200 rounded-full flex items-center justify-center text-brand-900 hover:bg-brand-500 hover:text-white transition hover:border-brand-500"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
             
             <div>
-                <h4 class="font-bold text-brand-900 mb-4">Contato</h4>
-                <ul class="space-y-3 text-sm text-neutral-600">
-                    <li><i class="fa-brands fa-whatsapp mr-2 text-brand-500"></i> (11) 96177-6884</li>
-                    <li><i class="fa-solid fa-envelope mr-2 text-brand-500"></i> contato@grasielemiranda.com.br</li>
+                <h4 class="font-bold text-brand-900 mb-4">Contatos</h4>
+                <ul class="space-y-4 text-sm text-neutral-600">
+                    <li>
+                        <span class="font-bold block text-brand-900">Atendimento Clínico:</span>
+                        <a href="https://wa.me/5511961776884" class="hover:text-brand-500"><i class="fa-brands fa-whatsapp mr-2 text-brand-500"></i> (11) 96177-6884</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope mr-2 text-brand-500"></i> grasiele.miranda@outlook.com
+                    </li>
                 </ul>
             </div>
 
-            <div>
+            <div class="flex flex-col">
                 <h4 class="font-bold text-brand-900 mb-4">Localização</h4>
-                <p class="text-sm text-neutral-600 flex items-start gap-2">
+                <p class="text-sm text-neutral-600 flex items-start gap-2 mb-4">
                     <i class="fa-solid fa-location-dot mt-1 text-brand-500"></i>
-                    Rua Guaiúba, 293 - Cidade Dutra<br>São Paulo - SP
+                    <span>Rua Guaiúba, 293 - Cidade Dutra<br>São Paulo - SP</span>
                 </p>
+                
+                <div class="w-full h-48 rounded-lg overflow-hidden shadow-sm border border-gray-200">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Rua+Guai%C3%BAba%2C+293+-+Cidade+Dutra%2C+S%C3%A3o+Paulo+-+SP&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-gray-200 text-center text-xs text-neutral-500">
-            &copy; 2026 Grasiele Miranda - CRP 06/159220. Todos os direitos reservados.
+        
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-gray-100 text-center text-xs text-neutral-500">
+            &copy; 2026 Grasièle Miranda - CRP 06/159220. Todos os direitos reservados.
         </div>
     </footer>
 
@@ -881,5 +795,10 @@
             });
         }
     </script>
+
+    <a href="https://wa.me/5511961776884" class="whatsapp-float" aria-label="Agendar Sessao pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp text-xl"></i>
+        <span>Agendar Sessão</span>
+    </a>
 </body>
 </html>
